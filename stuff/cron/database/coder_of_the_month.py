@@ -354,11 +354,12 @@ def get_user_problems(
                 s.identity_id, s.problem_id;
     '''
     logging.info('EXPLAIN get_user_problems result')
-    cur_readonly.execute('EXPLAIN ' + sql, (identity_ids_str, problem_ids_str))
-    cur_readonly.execute(sql, (identity_ids_str, problem_ids_str))
+    sql = sql.format(identity_ids_str=identity_ids_str,
+                     problem_ids_str=problem_ids_str)
+    cur_readonly.execute('EXPLAIN ' + sql)
     for row in cur_readonly.fetchall():
         logging.info("EXPLAIN result: %s", row)
-
+    cur_readonly.execute(sql)
     # Populate user_problems dictionary with the problems solved by each user
     for row in cur_readonly.fetchall():
         identity_id = row['identity_id']
