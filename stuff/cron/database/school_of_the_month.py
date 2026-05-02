@@ -142,7 +142,7 @@ def get_current_problems_solved_per_month(
     '''
     cur_readonly.execute('EXPLAIN ' + sql, {'months': months})
     for row in cur_readonly.fetchall():
-        logging.debug(
+        logging.info(
             "[get_current_problems_solved_per_month] EXPLAIN id=%s "
             "table=%s type=%s key=%s rows=%s Extra=%s",
             row.get('id'), row.get('table'), row.get('type'), row.get(
@@ -275,7 +275,7 @@ def get_school_of_the_month_candidates(
                                             first_day_of_next_month,
                                             first_day_of_next_month))
     for row in cur_readonly.fetchall():
-        logging.debug(
+        logging.info(
             "[get_school_of_the_month_candidates] EXPLAIN "
             "id=%s table=%s type=%s key=%s rows=%s Extra=%s",
             row.get('id'), row.get('table'), row.get('type'), row.get(
