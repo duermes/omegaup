@@ -357,8 +357,9 @@ def get_user_problems(
                      problem_ids_str=problem_ids_str)
     cur_readonly.execute('EXPLAIN ' + sql)
     for row in cur_readonly.fetchall():
-        logging.info(
-            "[get_user_problems] EXPLAIN id=%s table=%s type=%s key=%s rows=%s Extra=%s",
+        logging.debug(
+            "[get_user_problems] EXPLAIN id=%s table=%s "
+            "type=%s key=%s rows=%s Extra=%s",
             row.get('id'), row.get('table'), row.get('type'), row.get(
                 'key'), row.get('rows'), row.get('Extra')
         )
