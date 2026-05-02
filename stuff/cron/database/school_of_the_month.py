@@ -160,7 +160,7 @@ def get_current_problems_solved_per_month(
             )
         )
     logging.info(
-        "Evaluating [get_current_problems_solved_per_month] "
+        "Evaluated [get_current_problems_solved_per_month] "
         "for %d problems", len(problems))
     return problems
 
