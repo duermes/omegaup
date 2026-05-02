@@ -159,6 +159,9 @@ def get_current_problems_solved_per_month(
                 problems_solved=row['problems_solved'],
             )
         )
+    logging.info(
+        "Evaluating [get_current_problems_solved_per_month] "
+        "for %d problems", len(problems))
     return problems
 
 
@@ -274,6 +277,7 @@ def get_school_of_the_month_candidates(
     cur_readonly.execute('EXPLAIN ' + sql, (first_day_of_current_month,
                                             first_day_of_next_month,
                                             first_day_of_next_month))
+
     for row in cur_readonly.fetchall():
         logging.info(
             "[get_school_of_the_month_candidates] EXPLAIN "
@@ -294,6 +298,9 @@ def get_school_of_the_month_candidates(
                 score=row['score'],
             )
         )
+    logging.info(
+        "Evaluated [get_school_of_the_month_candidates] "
+        "for %d schools", len(candidates))
     return candidates
 
 

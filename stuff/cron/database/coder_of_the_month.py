@@ -356,6 +356,11 @@ def get_user_problems(
     sql = sql.format(identity_ids_str=identity_ids_str,
                      problem_ids_str=problem_ids_str)
     cur_readonly.execute('EXPLAIN ' + sql)
+
+    logging.info("Evaluating [get_user_problems] for %d "
+                 "users and %d problems",
+                 len(eligible_users), len(problems_admins))
+
     for row in cur_readonly.fetchall():
         logging.info(
             "[get_user_problems] EXPLAIN id=%s table=%s "
