@@ -140,10 +140,13 @@ def get_current_problems_solved_per_month(
         ORDER BY
             `time` ASC
     '''
-    logging.info('EXPLAIN get_current_problems_solved_per_month result')
     cur_readonly.execute('EXPLAIN ' + sql, {'months': months})
     for row in cur_readonly.fetchall():
-        logging.info("EXPLAIN result: %s", row)
+        logging.info(
+            "[get_current_problems_solved_per_month] EXPLAIN id=%s table=%s type=%s key=%s rows=%s Extra=%s",
+            row.get('id'), row.get('table'), row.get('type'), row.get(
+                'key'), row.get('rows'), row.get('Extra')
+        )
 
     cur_readonly.execute(sql, {'months': months})
     problems: List[ProblemSolved] = []
@@ -267,12 +270,15 @@ def get_school_of_the_month_candidates(
         LIMIT 100;
     '''
 
-    logging.info('EXPLAIN get_school_of_the_month_candidates result')
     cur_readonly.execute('EXPLAIN ' + sql, (first_day_of_current_month,
                                             first_day_of_next_month,
                                             first_day_of_next_month))
     for row in cur_readonly.fetchall():
-        logging.info("EXPLAIN result: %s", row)
+        logging.info(
+            "[get_school_of_the_month_candidates] EXPLAIN id=%s table=%s type=%s key=%s rows=%s Extra=%s",
+            row.get('id'), row.get('table'), row.get('type'), row.get(
+                'key'), row.get('rows'), row.get('Extra')
+        )
 
     cur_readonly.execute(
         sql, (first_day_of_current_month, first_day_of_next_month,

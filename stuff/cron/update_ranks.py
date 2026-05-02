@@ -66,6 +66,11 @@ from utils import (
     get_first_day_of_next_month,
 )
 
+logging.basicConfig(
+    filename='update_ranks.log',
+    level=logging.DEBUG,
+    format='%(asctime)s %(levelname)s %(message)s'
+)
 
 sys.path.insert(
     0,
